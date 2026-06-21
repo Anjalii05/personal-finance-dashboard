@@ -2,7 +2,13 @@ import Sidebar from "../components/sidebar";
 import Navbar from "../components/navbar";
 import SummaryCard from "../components/summarycard";
 import RecentTransactions from "../components/RecentTransactions";
+import ExpenseBreakdown from "../components/ExpenseBreakdown";
+import ExpensePieChart from "../components/ExpensePieChart";
+import MonthlyExpenseChart from "../components/ExpenseChart";
+import BudgetProgress from "../components/BudgetProgress";
 import {Box,Card, Grid, Typography,TextField, Button} from '@mui/material';
+
+
 
 
 function Dashboard() {
@@ -10,7 +16,7 @@ function Dashboard() {
     <>
     <Box sx={{display:"flex" , minHeight:"100vh"}}>
         <Sidebar />
-        <Box sx={{flex:1, p: 3, mb: 3, backgroundColor: "#f8fafc",}}>
+        <Box sx={{flex:1, p: 3, backgroundColor: "#f8fafc",}}>
             <Navbar/>
             <Grid container spacing={2} >
             <Grid  item xs={12} md={3}><SummaryCard title="Total Income" amount="5000"></SummaryCard></Grid>
@@ -19,6 +25,27 @@ function Dashboard() {
             <Grid  item xs={12} md={3}><SummaryCard title="Savings Rate" amount="40%"></SummaryCard></Grid>
             </Grid>
             <RecentTransactions  />
+            <Grid container spacing={3} >
+                 <Grid item xs={12} lg={6}>
+                     <ExpenseBreakdown />  
+
+                 </Grid>
+                 <Grid item xs={12} lg={6}>
+                    <ExpensePieChart></ExpensePieChart>
+                 </Grid>
+            </Grid>
+            <Grid container spacing={3} >
+                 <Grid item xs={12} md={8}>
+                     <MonthlyExpenseChart></MonthlyExpenseChart> 
+
+                 </Grid>
+                 <Grid item xs={12} md={4}>
+                    <BudgetProgress></BudgetProgress>
+                 </Grid>
+            </Grid>
+            
+            
+            
         </Box>
     </Box>
     </>

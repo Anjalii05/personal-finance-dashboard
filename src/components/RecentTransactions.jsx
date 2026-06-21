@@ -1,4 +1,4 @@
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow,Paper} from "@mui/material";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow,Paper, Typography} from "@mui/material";
 function RecentTransactions() {
 
     const transactions = [
@@ -9,6 +9,7 @@ function RecentTransactions() {
         ]
   return (
     <>
+     <Typography variant="h5" fontWeight="bold" sx={{ mt: 4 }}>Recent Transactions</Typography>
      <TableContainer component={Paper} sx={{ mt: 4 }}>
         <Table> 
             <TableHead>

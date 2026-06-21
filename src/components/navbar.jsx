@@ -8,7 +8,7 @@ function navbar(){
                 alignItems: "center",
                 mb: 4,
             }}>
-            <Typography variant="h4" fontweight="bold">Dashboard</Typography>
+            <Typography variant="h4" fontWeight="bold">Dashboard</Typography>
             <Typography color="text.secondary">Welcome back, Anjali!</Typography>
             <Avatar sx={{ bgcolor: "#4F46E5" }}>A</Avatar>
             </Box>  
