@@ -2,9 +2,44 @@ import {Card, Grid, Typography,TextField, Button,Box} from '@mui/material';
 import { Link } from "react-router-dom";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import financeImage from "../assets/finance-image.png";
+import axios from "axios";
+import { useState } from "react";
 
 
 function Register(){
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const handleRegister = async () => {
+    try {
+
+        if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+        }
+
+        const response = await axios.post(
+        "https://localhost:7024/api/Auth/register",
+        {
+            fullName,
+            email,
+            password,
+        }
+        );
+
+        alert(response.data.message);
+
+    } catch (error) {
+    console.error(error);
+
+    alert(
+        error.response?.data?.message ||
+        error.message ||
+        "Registration Failed"
+    );
+}
+    };
     return (
          <>
                 <Grid container sx={{minHeight: "100vh", justifyContent:"center", alignItems:"center" ,backgroundColor:"#f8fafc"}} > 
@@ -60,11 +95,11 @@ function Register(){
                     }}>
                          <Typography variant="h4" fontWeight="bold" gutterBottom>Create Account</Typography>
                          <Typography color="text.secondary" sx={{ mb: 2 }}>Join Finance Tracker and start managing your finances.</Typography>
-                         <TextField label="Full Name" fullWidth margin="dense"/>
-                         <TextField label="Email" fullWidth margin="dense"/>
-                         <TextField label="Password" fullWidth margin="dense" type="password"/>
-                         <TextField label="Confirm Password" fullWidth margin="dense" type="password"/>
-                         <Button variant="contained" color="primary" size="large" fullWidth sx={{ mt: 2,  py: 1.5,  borderRadius: 2,bgcolor: "#4F46E5", "&:hover": { bgcolor: "#4338CA", }, }}>Register</Button>
+                         <TextField label="Full Name" fullWidth margin="dense" value={fullName} onChange={(e) => setFullName(e.target.value)}/>
+                         <TextField label="Email" fullWidth margin="dense" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                         <TextField label="Password" fullWidth margin="dense" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                         <TextField label="Confirm Password" fullWidth margin="dense" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+                         <Button variant="contained" fullWidth onClick={handleRegister}color="primary" size="large"  sx={{ mt: 2,  py: 1.5,  borderRadius: 2,bgcolor: "#4F46E5", "&:hover": { bgcolor: "#4338CA", }, }}>Register</Button>
                          <Typography align="center" sx={{ mt: 2 }}> Already have an account?{" "}  <Link to="/" style={{ color: "#4F46E5",fontWeight: 600,textDecoration: "none",  }}>Login </Link></Typography>  
                          </Card>
                     </Grid>
