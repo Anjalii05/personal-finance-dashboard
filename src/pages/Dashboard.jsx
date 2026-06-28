@@ -6,49 +6,66 @@ import ExpenseBreakdown from "../components/ExpenseBreakdown";
 import ExpensePieChart from "../components/ExpensePieChart";
 import MonthlyExpenseChart from "../components/ExpenseChart";
 import BudgetProgress from "../components/BudgetProgress";
-import {Box,Card, Grid, Typography,TextField, Button} from '@mui/material';
-
-
-
+import { Box, Grid } from "@mui/material";
 
 function Dashboard() {
   return (
-    <>
-    <Box sx={{display:"flex" , minHeight:"100vh"}}>
-        <Sidebar />
-        <Box sx={{flex:1, p: 3, backgroundColor: "#f8fafc",}}>
-            <Navbar/>
-            <Grid container spacing={2} >
-            <Grid  item xs={12} md={3}><SummaryCard title="Total Income" amount="5000"></SummaryCard></Grid>
-            <Grid  item xs={12} md={3}><SummaryCard title="Total Expenses" amount="3000"></SummaryCard></Grid>
-            <Grid  item xs={12} md={3}><SummaryCard title="Net Worth" amount="2000"></SummaryCard></Grid>
-            <Grid  item xs={12} md={3}><SummaryCard title="Savings Rate" amount="40%"></SummaryCard></Grid>
-            </Grid>
-            <RecentTransactions  />
-            <Grid container spacing={3} >
-                 <Grid item xs={12} lg={6}>
-                     <ExpenseBreakdown />  
+    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#F8FAFC" }}>
 
-                 </Grid>
-                 <Grid item xs={12} lg={6}>
-                    <ExpensePieChart></ExpensePieChart>
-                 </Grid>
-            </Grid>
-            <Grid container spacing={3} >
-                 <Grid item xs={12} md={8}>
-                     <MonthlyExpenseChart></MonthlyExpenseChart> 
+      <Sidebar />
 
-                 </Grid>
-                 <Grid item xs={12} md={4}>
-                    <BudgetProgress></BudgetProgress>
-                 </Grid>
-            </Grid>
-            
-            
-            
+      <Box sx={{ flex: 1, px: 4, py: 3 }}>
+
+        <Navbar />
+
+        {/* Summary Cards */}
+        <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid item xs={12} sm={6} lg={3}>
+            <SummaryCard title="Total Income" amount="5000" />
+          </Grid>
+
+          <Grid item xs={12} sm={6} lg={3}>
+            <SummaryCard title="Total Expenses" amount="3000" />
+          </Grid>
+
+          <Grid item xs={12} sm={6} lg={3}>
+            <SummaryCard title="Net Worth" amount="2000" />
+          </Grid>
+
+          <Grid item xs={12} sm={6} lg={3}>
+            <SummaryCard title="Savings Rate" amount="40%" />
+          </Grid>
+        </Grid>
+
+        {/* Dashboard Analytics */}
+        <Grid container spacing={3} sx={{ mb: 4 }}>
+
+          <Grid item xs={12} lg={4}>
+            <ExpenseBreakdown />
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <ExpensePieChart />
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <BudgetProgress />
+          </Grid>
+
+        </Grid>
+
+        {/* Monthly Chart */}
+        <Box sx={{ mb: 4 }}>
+          <MonthlyExpenseChart />
         </Box>
+
+        {/* Transactions */}
+        <RecentTransactions />
+
+      </Box>
+
     </Box>
-    </>
   );
 }
+
 export default Dashboard;

@@ -8,6 +8,8 @@ import Income from "./pages/Income";
 import Budget from "./pages/Budget";
 import Reports from "./pages/Reports";
 import Profile from "./pages/Profile";
+import AddExpense from "./pages/AddExpense";
+import EditExpense from "./pages/EditExpense";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Route path="/budget" element={<Budget />} />
       <Route path="/reports" element={<Reports />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/add-expense" element={<AddExpense />} />
+      <Route path="/edit-expense/:id" element={<EditExpense />} />
     </Routes>
   );
 }
