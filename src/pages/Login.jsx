@@ -1,14 +1,57 @@
 import {Card, Grid, Typography,TextField, Button,Box} from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import financeImage from "../assets/finance-image.png";
+import financeImage from "../assets/finance-image.jpg";
+import axios from "axios";
+import { useState } from "react";
 
 
 function Login(){
+
+     
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
+    
+        const navigate = useNavigate();
+        const handleLogin = async () => {
+        try {
+
+            if (!email.trim()) {
+                alert("Please enter your Email");
+                return;
+            }
+    
+            if (!password.trim()) {
+                alert("Please enter your Password");
+                return;
+            }
+    
+    
+            const response = await axios.post(
+            "https://localhost:7024/api/Auth/login",
+            {
+                email,
+                password,
+            }
+            );
+            localStorage.setItem("userId", response.data.userId);
+            
+            setEmail("");
+            setPassword("");
+    
+            navigate("/dashboard");
+    
+        } catch (error) {
+        console.error(error);
+    
+        alert(
+            error.response?.data?.message ||error.message ||"Login Failed");
+    }
+        };
     return(
         <>
         <Grid container sx={{minHeight: "100vh", justifyContent:"center", alignItems:"center" ,background:
-"linear-gradient(135deg, #F8FAFC, #EEF2FF)"}} > 
+            "linear-gradient(135deg, #F8FAFC, #EEF2FF)"}} > 
             
             <Grid item xs={12} md={7} sx={{position:"relative", overflow:"hidden"}}>
             <Box component="img" src={financeImage} sx={{ width: "100%", height: "100vh", objectFit: "cover" }} />
@@ -62,10 +105,10 @@ function Login(){
                     }}>
                  <Typography variant="h4" fontWeight="bold" gutterBottom>Welcome Back!</Typography>
                  <Typography color="text.secondary" sx={{ mb: 3,  }}>Track your expenses and stay on top of your finances.</Typography>
-                 <TextField label="Email" fullWidth margin="normal" sx={{"& .MuiOutlinedInput-root": {borderRadius: 2, }, }}/>
-                 <TextField label="Password" fullWidth margin="normal" type="password" sx={{"& .MuiOutlinedInput-root": {borderRadius: 2, }, }}/>
+                 <TextField label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}fullWidth margin="normal"  sx={{"& .MuiOutlinedInput-root": {borderRadius: 2, }, }}/>
+                 <TextField label="Password" fullWidth  value={password} onChange={(e) => setPassword(e.target.value)} margin="normal" type="password" sx={{"& .MuiOutlinedInput-root": {borderRadius: 2, }, }}/>
                  <Typography variant="body2" color="primary"sx={{ textAlign: "right", mt: 1, cursor: "pointer",}}>Forgot Password?</Typography>
-                 <Button variant="contained"  size="large" fullWidth sx={{ mt: 3,  py: 1.5,   bgcolor: "#4F46E5", "&:hover": {bgcolor: "#4338CA",  transform: "translateY(-2px)",},borderRadius: 2, }}>Login</Button>
+                 <Button variant="contained"  size="large" fullWidth onClick={handleLogin} sx={{ mt: 3,  py: 1.5,   bgcolor: "#4F46E5", "&:hover": {bgcolor: "#4338CA",  transform: "translateY(-2px)",},borderRadius: 2, }}>Login</Button>
                  <Typography align="center" sx={{ mt: 3 }}> Don't have an account?{" "}<Link to="/register" style={{ color: "#4F46E5",fontWeight: 600,textDecoration: "none",  }}>Register </Link></Typography>  
                  </Card>
             </Grid>
