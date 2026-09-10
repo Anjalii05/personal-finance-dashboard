@@ -5,6 +5,8 @@ import SavingsIcon from "@mui/icons-material/Savings";
 import PaidIcon from "@mui/icons-material/Paid";
 
 function SummaryCard({ title, amount }) {
+
+  
   const getIcon = () => {
     switch (title) {
       case "Total Income":
@@ -52,20 +54,10 @@ function SummaryCard({ title, amount }) {
               fontWeight="bold"
               sx={{ mt: 1 }}
             >
-              ${amount}
+              ₹{amount}
             </Typography>
 
-            <Typography
-              variant="caption"
-              sx={{
-                color: "#22C55E",
-                fontWeight: 600,
-                mt: 1,
-                display: "block",
-              }}
-            >
-              ↑ 12% from last month
-            </Typography>
+            
           </Box>
 
           <Box

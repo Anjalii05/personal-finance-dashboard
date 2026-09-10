@@ -6,119 +6,335 @@ import {
   TextField,
   Button,
   MenuItem,
+  InputAdornment,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SaveIcon from "@mui/icons-material/Save";
+import TitleIcon from "@mui/icons-material/Title";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import CategoryIcon from "@mui/icons-material/Category";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import NotesIcon from "@mui/icons-material/Notes";
 
 function EditExpense() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [expenseDate, setExpenseDate] = useState("");
+  const [notes, setNotes] = useState("");
+
+  const handleEditExpense = async () => {
+    try {
+        const token = localStorage.getItem("token");
+        
+        console.log(token);
+        console.log({
+            title,
+            amount,
+            category,
+            expenseDate,
+            notes
+        });
+        await axios.put(
+            `https://localhost:7024/api/Expense/updateExpense/${id}`,
+            {
+                title,
+                amount,
+                category,
+                expenseDate,
+                notes
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        
+        navigate("/expenses");
+
+    } 
+    catch (error) {
+    console.log(error.response);
+    console.log(error.response?.data);
+    console.log(error.response?.status);
+
+    alert(JSON.stringify(error.response?.data));
+     }
+    };
+
   return (
-    <>
-      {/* Back Button */}
+    <Box
+      sx={{
+        minHeight: "100vh",
+        bgcolor: "#F8FAFC",
+        py: 5,
+        px: 2,
+      }}
+    >
+      <Button
+      component={Link}
+      to="/expenses"
+      startIcon={<ArrowBackIcon />}
+      sx={{
+        color: "#4F46E5",
+        mb: 4,
+        fontWeight: 600,
+        textTransform: "none",
+        "&:hover": {
+          bgcolor: "#EEF2FF",
+        },
+      }}
+    >
+      Back to Expenses
+    </Button>
 
-      <Box sx={{ mb: 3 }}>
-        <Button
-          component={Link}
-          to="/expenses"
-          startIcon={<ArrowBackIcon />}
-          sx={{ textTransform: "none" }}
-        >
-          Back to Expenses
-        </Button>
+
+      
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <Typography
+          variant="h3"
+          fontWeight={700}
+          sx={{
+              color:"#111827"
+          }}
+      >
+          Edit Expense
+      </Typography>
+
+      <Typography
+          sx={{
+              color:"#6B7280",
+              mt:1,
+              fontSize:"17px"
+          }}
+      >
+           Update the details of your expense.
+      </Typography>
       </Box>
-
-      {/* Page Header */}
-
-      <Typography variant="h4" fontWeight="bold">
-        Edit Expense
-      </Typography>
-
-      <Typography color="text.secondary" sx={{ mb: 4 }}>
-        Update the details of your expense.
-      </Typography>
 
       {/* Form */}
 
-      <Card sx={{ maxWidth: 700, borderRadius: 3, boxShadow: 3 }}>
-        <CardContent>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Card
+         
+          sx={{
+              width:"100%",
+              maxWidth:720,
+              borderRadius:5,
+              p:1,
+              boxShadow:"0 20px 45px rgba(15,23,42,.08)",
+              border:"1px solid #E5E7EB"
+          }}
 
-          <TextField
-            label="Expense Title"
-            placeholder="Enter expense title"
-            fullWidth
-            sx={{ mb: 3 }}
-          />
 
-          <TextField
-            label="Amount"
-            type="number"
-            placeholder="Enter amount"
-            fullWidth
-            sx={{ mb: 3 }}
-          />
-
-          <TextField
-            select
-            label="Category"
-            fullWidth
-            defaultValue=""
-            sx={{ mb: 3 }}
-          >
-            <MenuItem value="">Select Category</MenuItem>
-            <MenuItem value="Food">Food</MenuItem>
-            <MenuItem value="Travel">Travel</MenuItem>
-            <MenuItem value="Bills">Bills</MenuItem>
-            <MenuItem value="Shopping">Shopping</MenuItem>
-            <MenuItem value="Entertainment">Entertainment</MenuItem>
-          </TextField>
-
-          <TextField
-            label="Date"
-            type="date"
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-            sx={{ mb: 3 }}
-          />
-
-          <TextField
-            label="Notes"
-            placeholder="Write something..."
-            multiline
-            rows={4}
-            fullWidth
-            sx={{ mb: 4 }}
-          />
-
-          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
-
-            <Button
-              component={Link}
-              to="/expenses"
-              variant="outlined"
-              sx={{ textTransform: "none" }}
-            >
-              Cancel
-            </Button>
-
-            <Button
-              variant="contained"
-              startIcon={<SaveIcon />}
+          
+        >
+          <CardContent sx={{ p: 4 }}>
+            <TextField
+              required
+              fullWidth
+              label="Expense Title"
+              placeholder="Dinner with friends"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               sx={{
-                bgcolor: "#4F46E5",
-                textTransform: "none",
-                "&:hover": {
-                  bgcolor: "#4338CA",
-                },
+                    mb:3,
+
+                    "& .MuiOutlinedInput-root":{
+                        borderRadius:"14px",
+                        height:58,
+
+                        "&:hover fieldset":{
+                            borderColor:"#4F46E5"
+                        },
+
+                        "&.Mui-focused fieldset":{
+                            borderWidth:2
+                        }
+                    }
+                }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <TitleIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <TextField
+              required
+              fullWidth
+              type="number"
+              label="Amount"
+              placeholder="0.00"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              sx={{
+                mb:3,
+
+                "& .MuiOutlinedInput-root":{
+                    borderRadius:"14px",
+                    height:58,
+
+                    "&:hover fieldset":{
+                        borderColor:"#4F46E5"
+                    },
+
+                    "&.Mui-focused fieldset":{
+                        borderWidth:2
+                    }
+                }
+            }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CurrencyRupeeIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <TextField
+              required
+              select
+              fullWidth
+              label="Category"
+              defaultValue=""
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              sx={{
+                  mb:3,
+
+                  "& .MuiOutlinedInput-root":{
+                      borderRadius:"14px",
+                      height:58,
+
+                      "&:hover fieldset":{
+                          borderColor:"#4F46E5"
+                      },
+
+                      "&.Mui-focused fieldset":{
+                          borderWidth:2
+                      }
+                  }
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CategoryIcon color="primary" />
+                  </InputAdornment>
+                ),
               }}
             >
-              Save Expense
-            </Button>
+              <MenuItem value="">Select Category</MenuItem>
+              <MenuItem value="Food">🍔 Food</MenuItem>
+              <MenuItem value="Travel">✈ Travel</MenuItem>
+              <MenuItem value="Shopping">🛒 Shopping</MenuItem>
+              <MenuItem value="Bills">💡 Bills</MenuItem>
+              <MenuItem value="Entertainment">🎬 Entertainment</MenuItem>
+            </TextField>
 
-          </Box>
+            <TextField
+              required
+              fullWidth
+              type="date"
+              //label="Expense Date"
+              value={expenseDate}
+              onChange={(e) => setExpenseDate(e.target.value)}  
+              InputLabelProps={{ shrink: true }}
+              sx={{
+                      mb:3,
 
-        </CardContent>
-      </Card>
-    </>
+                      "& .MuiOutlinedInput-root":{
+                          borderRadius:"14px",
+                          height:58,
+
+                          "&:hover fieldset":{
+                              borderColor:"#4F46E5"
+                          },
+
+                          "&.Mui-focused fieldset":{
+                              borderWidth:2
+                          }
+                      }
+                  }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CalendarMonthIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <TextField
+              fullWidth
+              multiline
+              rows={4}
+              label="Notes"
+              placeholder="Example: Dinner with college friends..."
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}  
+              sx={{ mb: 4 }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment
+                    position="start"
+                    sx={{ alignSelf: "flex-start", mt: 1 }}
+                  >
+                    <NotesIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+              <Button
+                component={Link}
+                to="/expenses"
+                variant="outlined"
+                sx={{
+                  borderRadius: 2,
+                  px: 3,
+                  textTransform: "none",
+                }}
+              >
+                Cancel
+              </Button>
+
+              <Button
+                variant="contained"
+                startIcon={<SaveIcon />}
+                onClick={handleEditExpense}
+
+                sx={{
+                  bgcolor: "#4F46E5",
+                  px: 4,
+                  borderRadius: 2,
+                  textTransform: "none",
+                  fontWeight: 600,
+                  "&:hover": {
+                    bgcolor: "#4338CA",
+                  },
+                }}
+              >
+                Save Expense
+              </Button>
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    </Box>
   );
 }
 

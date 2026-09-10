@@ -4,22 +4,24 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import SavingsIcon from "@mui/icons-material/Savings";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import { Link } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 
 function Sidebar() {
 
   const menuItems = [
     { name: "Dashboard", icon: <DashboardIcon /> },
-    { name: "Expenses", icon: <AccountBalanceWalletIcon /> },
-    { name: "Income", icon: <AttachMoneyIcon /> },
+    { name: "Expenses", icon: <AccountBalanceWalletIcon />, path: "/expenses" },
+    { name: "Income", icon: <AttachMoneyIcon /> , path: "/income"},
     { name: "Budget", icon: <SavingsIcon /> },
-    { name: "Reports", icon: <AssessmentIcon /> },
+    { name: "Reports", icon: <AssessmentIcon />, path: "/reports" },
     { name: "Profile", icon: <PersonIcon /> },
   ];
 
   return (
     <>
-      <Box sx={{ width: 260, minHeight: "100vh", bgcolor: "#fff", borderRight: "1px solid #E5E7EB", p: 3 }}>
+      <Box 
+      sx={{ width: 260, minHeight: "100vh", bgcolor: "#fff", borderRight: "1px solid #E5E7EB", p: 3 }}>
 
         <Typography variant="h5" fontWeight="bold" color="#4F46E5" mb={5}>
           💰 Finance Tracker
@@ -27,10 +29,12 @@ function Sidebar() {
 
         {menuItems.map((item, index) => (
           <Box
+          component={Link}
+          to={item.path}
             key={index}
             sx={{
               display: "flex",
-              alignItems: "center",
+              
               gap: 2,
               p: 1.5,
               mb: 1,

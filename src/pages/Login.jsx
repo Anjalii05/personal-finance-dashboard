@@ -34,8 +34,11 @@ function Login(){
                 password,
             }
             );
-            localStorage.setItem("userId", response.data.userId);
+
             
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("userId", response.data.user.id);
+            localStorage.setItem("userName", response.data.user.fullName);
             setEmail("");
             setPassword("");
     
@@ -53,8 +56,8 @@ function Login(){
         <Grid container sx={{minHeight: "100vh", justifyContent:"center", alignItems:"center" ,background:
             "linear-gradient(135deg, #F8FAFC, #EEF2FF)"}} > 
             
-            <Grid item xs={12} md={7} sx={{position:"relative", overflow:"hidden"}}>
-            <Box component="img" src={financeImage} sx={{ width: "100%", height: "100vh", objectFit: "cover" }} />
+            <Grid item xs={12} md={7} sx={{position:"relative", overflow:"hidden",minHeight: { xs: 300, md: "100vh" },}}>
+            <Box component="img" src={financeImage} sx={{ width: "100%", height: { xs: 300, md: "100vh" }, objectFit: "cover" }} />
             <Box
             sx={{
                 position: "absolute",
@@ -94,11 +97,12 @@ function Login(){
                     justifyContent: "center",
                     alignItems: "center",
                     bgcolor: "#f5f7fa",
-                    pl: 8,
-                    pr: 6
+                    px: { xs: 2, md: 6 },
+                    py: 4
                 }}>
                 <Card sx={{
-                        width: 600,
+                        width: "100%",
+                        maxWidth: 500, 
                         p: 4,
                         borderRadius: 5,
                         boxShadow: "0px 20px 50px rgba(0,0,0,0.08)",
