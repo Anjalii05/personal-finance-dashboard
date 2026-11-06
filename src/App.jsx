@@ -13,6 +13,7 @@ import EditExpense from "./pages/EditExpense";
 import AddIncome from "./pages/AddIncome";
 import SetBudget from "./pages/SetBudget";
 import EditIncome from "./pages/EditIncome";
+import ForgotPassword from "./pages/ForgotPassword";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -30,7 +31,8 @@ function App() {
       <Route path="/add-expense" element={<AddExpense />} />
       <Route path="/edit-expense/:id" element={<EditExpense />} />
       <Route path="/edit-income/:id" element={<EditIncome />} />
-
+      <Route path="/forgot-password" element={<ForgotPassword />}/>
+      <Route path="/reset-password" element={<ForgotPassword />} />
       <Route path="/add-income" element={<AddIncome />} />
       <Route path="/set-budget" element={<SetBudget />} />
     </Routes>

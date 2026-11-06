@@ -382,7 +382,7 @@ function EditIncome() {
 
           <Button
             component={Link}
-            to="/incomes"
+            to="/income"
             variant="outlined"
             startIcon={<ArrowBackIcon />}
             sx={{

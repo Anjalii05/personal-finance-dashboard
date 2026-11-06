@@ -11,8 +11,9 @@ function Login(){
      
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
-    
+        const [error, setError] = useState("");
         const navigate = useNavigate();
+
         const handleLogin = async () => {
         try {
 
@@ -44,12 +45,13 @@ function Login(){
     
             navigate("/dashboard");
     
-        } catch (error) {
-        console.error(error);
-    
-        alert(
-            error.response?.data?.message ||error.message ||"Login Failed");
-    }
+       } catch (err) {
+    console.error(err);
+
+    setError(
+        err.response?.data?.message || "Invalid email or password."
+    );
+}
         };
     return (
     <Box
@@ -270,8 +272,20 @@ function Login(){
                             },
                         }}
                     />
+                                    {error && (
+                    <Typography
+                        color="error"
+                        sx={{
+                            mt: 1,
+                            fontSize: "14px"
+                        }}
+                    >
+                        {error}
+                    </Typography>
+                )}
 
 
+                    {/* Forgot Password */}
                     {/* Forgot Password */}
                     <Typography
                         variant="body2"
@@ -286,7 +300,15 @@ function Login(){
                             },
                         }}
                     >
-                        Forgot Password?
+                        <Link
+                            to="/forgot-password"
+                            style={{
+                                color: "#1976D2",
+                                textDecoration: "none",
+                            }}
+                        >
+                            Forgot Password?
+                        </Link>
                     </Typography>
 
 
