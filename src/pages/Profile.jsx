@@ -15,8 +15,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import LockIcon from "@mui/icons-material/Lock";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
-import Footer from "../components/footer";
-import Sidebar from "../components/sidebar";
+import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 import Navbar from "../components/navbar";
 
 import { useEffect, useState } from "react";

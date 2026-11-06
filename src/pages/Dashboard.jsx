@@ -1,4 +1,4 @@
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/Sidebar";
 import Navbar from "../components/navbar";
 import SummaryCard from "../components/summarycard";
 import RecentTransactions from "../components/RecentTransactions";

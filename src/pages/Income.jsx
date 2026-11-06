@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -28,7 +28,7 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/Sidebar";
 import Navbar from "../components/navbar";
 
 

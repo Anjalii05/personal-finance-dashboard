@@ -22,8 +22,8 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import SavingsOutlinedIcon from "@mui/icons-material/SavingsOutlined";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 
-import Footer from "../components/footer";
-import Sidebar from "../components/sidebar";
+import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 import Navbar from "../components/navbar";
 
 function Budget() {

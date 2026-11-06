@@ -16,9 +16,9 @@ import {
   CircularProgress,
   Alert,
 } from "@mui/material";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/Sidebar";
 import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 function Reports() {
   const getLocalDate = (date) => {

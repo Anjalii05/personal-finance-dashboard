@@ -28,8 +28,8 @@ import CategoryIcon from "@mui/icons-material/Category";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import NotesIcon from "@mui/icons-material/Notes";
 
-import Sidebar from "../components/sidebar";
-import Footer from "../components/footer";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 
 function EditIncome() {
   const navigate = useNavigate();
