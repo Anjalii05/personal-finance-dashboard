@@ -118,7 +118,7 @@ function AddExpense() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "https://localhost:7024/api/Expense/addExpense",
+        "https://manageexpense.runasp.net/api/Expense/addExpense",
         {
           title,
           amount: Number(amount),

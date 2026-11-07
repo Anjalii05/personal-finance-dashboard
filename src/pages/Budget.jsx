@@ -79,7 +79,7 @@ function Budget() {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          "https://localhost:7024/api/Budget/dashboard",
+          "https://manageexpense.runasp.net/api/Budget/dashboard",
           {
             params: { month, year },
             headers: {

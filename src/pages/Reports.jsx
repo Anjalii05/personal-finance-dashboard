@@ -66,7 +66,7 @@ function Reports() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "https://localhost:7024/api/Reports/transactions",
+        "https://manageexpense.runasp.net/api/Reports/transactions",
         {
           params: { fromDate, toDate },
           headers: {

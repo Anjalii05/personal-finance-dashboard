@@ -58,7 +58,7 @@ function Register() {
         }
 
         const response = await axios.post(
-            "https://localhost:7024/api/Auth/register",
+            "https://manageexpense.runasp.net/api/Auth/register",
             {
                 full_name: fullName,
                 email: email,

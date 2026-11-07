@@ -21,7 +21,7 @@ function Navbar() {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          "https://localhost:7024/api/Auth/profile",
+          "https://manageexpense.runasp.net/api/Auth/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,

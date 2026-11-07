@@ -28,7 +28,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "https://localhost:7024/api/Expense/getExpenses",
+        "https://manageexpense.runasp.net/api/Expense/getExpenses",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ function Dashboard() {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-            "https://localhost:7024/api/Income/getIncomes",
+            "https://manageexpense.runasp.net/api/Income/getIncomes",
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

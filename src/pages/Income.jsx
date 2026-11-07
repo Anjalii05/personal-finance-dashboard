@@ -47,7 +47,7 @@ function Incomes() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "https://localhost:7024/api/Income/getIncomes",
+        "https://manageexpense.runasp.net/api/Income/getIncomes",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ function Incomes() {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `https://localhost:7024/api/Income/deleteIncome/${incomeId}`,
+        `https://manageexpense.runasp.net/api/Income/deleteIncome/${incomeId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

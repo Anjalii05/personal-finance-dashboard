@@ -47,7 +47,7 @@ function ForgotPassword() {
             setLoading(true);
 
             const response = await axios.post(
-                "https://localhost:7024/api/auth/forgot-password",
+                "https://manageexpense.runasp.net/api/auth/forgot-password",
                 { email: email.trim() }
             );
 
@@ -85,7 +85,7 @@ function ForgotPassword() {
             setLoading(true);
 
             const response = await axios.post(
-                "https://localhost:7024/api/auth/reset-password",
+                "https://manageexpense.runasp.net/api/auth/reset-password",
                 {
                     email: emailFromLink,
                     token: tokenFromLink,

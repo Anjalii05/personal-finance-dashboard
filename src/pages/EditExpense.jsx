@@ -92,7 +92,7 @@ function EditExpense() {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          "https://localhost:7024/api/Expense/getExpenses",
+          "https://manageexpense.runasp.net/api/Expense/getExpenses",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -224,7 +224,7 @@ function EditExpense() {
       console.log("Update Request:", requestBody);
 
       await axios.put(
-        `https://localhost:7024/api/Expense/updateExpense/${id}`,
+        `https://manageexpense.runasp.net/api/Expense/updateExpense/${id}`,
         requestBody,
         {
           headers: {

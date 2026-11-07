@@ -121,7 +121,7 @@ function AddIncome() {
       });
 
       await axios.post(
-        "https://localhost:7024/api/Income/addIncome",
+        "https://manageexpense.runasp.net/api/Income/addIncome",
         {
           title,
           amount,

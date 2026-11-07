@@ -149,7 +149,7 @@ const SetBudget = () => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "https://localhost:7024/api/Budget/setBudget",
+        "https://manageexpense.runasp.net/api/Budget/setBudget",
         payload,
         {
           headers: {

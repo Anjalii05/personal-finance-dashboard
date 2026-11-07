@@ -23,9 +23,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Profile() {
-  const API_URL = "https://localhost:7024/api/Auth";
+  const API_URL = "https://manageexpense.runasp.net/api/Auth";
   const token = localStorage.getItem("token");
-  const IMAGE_BASE_URL = "https://localhost:7024/";
+  const IMAGE_BASE_URL = "https://manageexpense.runasp.net/";
 
   const initialProfile = {
     fullName: "",

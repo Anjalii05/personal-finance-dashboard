@@ -104,7 +104,7 @@ function EditIncome() {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          "https://localhost:7024/api/Income/getIncomes",
+          "https://manageexpense.runasp.net/api/Income/getIncomes",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -253,7 +253,7 @@ function EditIncome() {
       console.log("Update Request:", requestBody);
 
       await axios.put(
-        `https://localhost:7024/api/Income/updateIncome/${id}`,
+        `https://manageexpense.runasp.net/api/Income/updateIncome/${id}`,
         requestBody,
         {
           headers: {

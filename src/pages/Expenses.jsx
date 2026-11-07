@@ -46,7 +46,7 @@ function Expenses() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "https://localhost:7024/api/Expense/getExpenses",
+        "https://manageexpense.runasp.net/api/Expense/getExpenses",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ function Expenses() {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `https://localhost:7024/api/Expense/deleteExpense/${expenseId}`,
+        `https://manageexpense.runasp.net/api/Expense/deleteExpense/${expenseId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
